@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To do list</title>
+  <link rel="stylesheet" href="todo.css">
+
+</head>
+
+<body>
+  <h1 class="heading">Weekly To-Do List</h1>
+
+
+  <div class="main">
+    <div class="up">
+
+      <input type="text" id="do">
+      <button onclick="doit()">add</button>
+
+    </div>
+   
+    <div class="sublist">
+      <ul id="taskList"> <!--  to add the list element  -->
+
+      </ul>
+    </div>
+  </div>
+
+
+  <script>
+
+    //To dolist
+    //add button 
+    //take the value user typed
+    //add it to aray
+    //remove button
+
+
+    let arr = [];//made an empty array
+    function doit() {
+
+      let input = document.getElementById("do");//get the value from the input field using id
+      let word = input.value;//getting the value at the input field
+
+      if (word === "")//if the input filed is empty shows the alert msg
+      {
+
+        alert("pls feel it first");
+
+        return  //instad of using the else we can simply write the return so it willl stop
+
+      }   //we can use else and return both
+
+      // else{
+      //    arr.push(word);
+      //  const taskList= document.getElementById("taskList")
+      //  taskList.innerHTML=taskList.innerHTML + `<li>${word}</li>` 
+      //  input.value='';
+
+      // }
+      arr.push(word);//the value which we got is pushed in array we made
+      renderList();
+      //  taskList.innerHTML=taskList.innerHTML + `<li>${word}</li>` 
+      input.value = '';
+      console.log(arr)
+
+
+    }
+    function renderList()//this functin render means set the list uisng concredition of list
+    {
+      let strarr = "";// a empty string
+      for (let i = 0; i < arr.length; i++) {
+        strarr += `<li>${arr[i]}
+        <button onclick="delete_button(${i})" class="Delete">Delet</button><input type="checkbox"></li>`;//as the list increses it is added
+      }
+      //also it has delete button
+      const taskList = document.getElementById("taskList")//id of ul element which used to add it their
+      taskList.innerHTML = strarr;//th empty string which is now full is added at ul
+    }
+    function delete_button(index) {
+
+      arr.splice(index, 1);//index is given as argumnet
+      console.log(arr)
+      renderList();//to render again and to show updated list after the deleted part
+
+    }
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+
+
+</body>
+
+</html>
